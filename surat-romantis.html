@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Cinta Romantis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="hearts" class="falling-hearts"></div>
+    <div id="intro" class="container">
+        <h1>surat buat sayangku <span class="heart">❤️</span></h1>
+        <button class="button" onclick="openLetter()">Buka Surat</button>
+    </div>
+    <div id="letter" class="container" style="display: none;">
+        <div class="slide active">
+            <p>Klik tombol selanjutnya untuk mulai membaca surat cinta ini.</p>
+        </div>
+        <div class="slide">
+            <p>Aku tahu akhir-akhir ini kamu lagi capek banget. Capek sama tugas, sama kerjaan, sama tekanan yang kadang nggak bisa kamu ceritain ke siapa-siapa. Tapi aku mau kamu tahu satu hal: aku bangga banget sama kamu.</p>
+            <p>Aku bangga sama semua usaha kamu, sama semua perjuangan kamu, bahkan sama cara kamu bertahan sejauh ini. Kamu mungkin ngerasa belum sejauh yang kamu mau, tapi percayalah… kamu udah sejauh ini dan itu nggak mudah.</p>
+        </div>
+        <div class="slide">
+            <p>Kalau suatu hari kamu ngerasa pengen nyerah, ingat ya: kamu nggak sendirian. Ada aku di sini, yang selalu doain kamu, selalu percaya kamu bisa, bahkan saat kamu sendiri ragu.</p>
+            <p>Pelan-pelan nggak apa-apa. Capek istirahat, bukan berhenti. Dunia mungkin keras, tapi kamu jauh lebih kuat dari yang kamu kira.</p>
+            <p>Semangat ya… aku tunggu kamu di garis finish dengan senyum paling bangga 🤍</p>
+            <p class="signature">i <span class="clickable" onclick="showLove(this)">love</span> sayang <span class="heart">💖</span></p>
+        </div>
+        <div class="nav-buttons">
+            <button class="button" onclick="prevSlide()">Sebelumnya</button>
+            <button class="button" onclick="nextSlide()">Selanjutnya</button>
+        </div>
+    </div>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+        function openLetter() {
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('letter').style.display = 'block';
+            showSlide(0);
+        }
+        function showLove() {
+            const hearts = document.getElementById('hearts');
+            for (let i = 0; i < 10; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-fall';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                hearts.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+            }
+            alert('Aku cinta kamu lebih dari segalanya! 💕');
+        }
+    </script>
+    <div id="hearts" class="falling-hearts"></div>
+</body>
+</html>
